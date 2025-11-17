@@ -8,7 +8,7 @@
 #include <QMessageBox>
 #include <QApplication>
 
-QString mFilename = "C:/Users/user/Desktop/1117/myfile.txt";
+QString mFilename = "C:/Users/user/Desktop/學習檔案/1117/getSaveFileName.txt";
 
 void Write (QString Filename, QString str)
 {
