@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>900</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,12 +78,41 @@ QPushButton:pressed {
     background-color: #0D47A1;
 }
 
+QPushButton:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
 QPushButton#pushButton {
     background-color: #4CAF50;
 }
 
 QPushButton#pushButton:hover {
     background-color: #45a049;
+}
+
+QPushButton#pushButton_clear {
+    background-color: #9E9E9E;
+}
+
+QPushButton#pushButton_clear:hover {
+    background-color: #757575;
+}
+
+QPushButton#pushButton_delete {
+    background-color: #f44336;
+}
+
+QPushButton#pushButton_delete:hover {
+    background-color: #d32f2f;
+}
+
+QPushButton#pushButton_edit {
+    background-color: #FFC107;
+}
+
+QPushButton#pushButton_edit:hover {
+    background-color: #FFA000;
 }
 
 QPushButton#pushButton_2 {
@@ -108,6 +137,29 @@ QPushButton#pushButton_4 {
 
 QPushButton#pushButton_4:hover {
     background-color: #d32f2f;
+}
+
+QStatusBar {
+    background-color: #2196F3;
+    color: white;
+    font-size: 9pt;
+}
+
+QGroupBox {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: white;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 5px 10px;
+    color: #2196F3;
+    font-weight: bold;
+    font-size: 11pt;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -124,8 +176,29 @@ QPushButton#pushButton_4:hover {
     <number>20</number>
    </property>
    <property name="bottomMargin">
-    <number>20</number>
+    <number>10</number>
    </property>
+   <item>
+    <layout class="QHBoxLayout" name="searchLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_search">
+       <property name="text">
+        <string>搜尋：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_search">
+       <property name="placeholderText">
+        <string>輸入關鍵字搜尋...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <widget class="QTableWidget" name="tableWidget">
      <property name="alternatingRowColors">
@@ -146,115 +219,143 @@ QPushButton#pushButton_4:hover {
     </widget>
    </item>
    <item>
-    <layout class="QFormLayout" name="formLayout">
-     <property name="horizontalSpacing">
-      <number>15</number>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>聯絡人資訊</string>
      </property>
-     <property name="verticalSpacing">
-      <number>10</number>
-     </property>
-     <property name="leftMargin">
-      <number>10</number>
-     </property>
-     <property name="topMargin">
-      <number>10</number>
-     </property>
-     <property name="rightMargin">
-      <number>10</number>
-     </property>
-     <property name="bottomMargin">
-      <number>10</number>
-     </property>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="placeholderText">
-        <string>請輸入學號</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>班級 :</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_2">
-       <property name="placeholderText">
-        <string>請輸入班級</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>姓名 :</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_3">
-       <property name="placeholderText">
-        <string>請輸入姓名</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>電話 :</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_4">
-       <property name="placeholderText">
-        <string>請輸入電話</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>學號 :</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="horizontalSpacing">
+       <number>15</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>12</number>
+      </property>
+      <property name="leftMargin">
+       <number>15</number>
+      </property>
+      <property name="topMargin">
+       <number>15</number>
+      </property>
+      <property name="rightMargin">
+       <number>15</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>學號 :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="placeholderText">
+         <string>請輸入學號</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>班級 :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="placeholderText">
+         <string>請輸入班級</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>姓名 :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="placeholderText">
+         <string>請輸入姓名</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>電話 :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_4">
+        <property name="placeholderText">
+         <string>請輸入電話</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
-      <number>15</number>
-     </property>
-     <property name="topMargin">
       <number>10</number>
      </property>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
      <item>
       <widget class="QPushButton" name="pushButton">
+       <property name="toolTip">
+        <string>新增聯絡人 (Ctrl+N)</string>
+       </property>
        <property name="text">
         <string>新增</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <widget class="QPushButton" name="pushButton_clear">
+       <property name="toolTip">
+        <string>清除輸入欄位</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_edit">
+       <property name="toolTip">
+        <string>編輯選取的聯絡人</string>
+       </property>
+       <property name="text">
+        <string>編輯</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_delete">
+       <property name="toolTip">
+        <string>刪除選取的聯絡人 (Delete)</string>
+       </property>
+       <property name="text">
+        <string>刪除</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -266,65 +367,42 @@ QPushButton#pushButton_4:hover {
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
+       <property name="toolTip">
+        <string>匯出資料至檔案 (Ctrl+S)</string>
+       </property>
        <property name="text">
         <string>匯出</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="QPushButton" name="pushButton_3">
+       <property name="toolTip">
+        <string>從檔案匯入資料</string>
+       </property>
        <property name="text">
         <string>匯入</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="QPushButton" name="pushButton_4">
+       <property name="toolTip">
+        <string>結束程式</string>
+       </property>
        <property name="text">
         <string>結束</string>
        </property>
       </widget>
      </item>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QStatusBar" name="statusBar">
+     <property name="sizeGripEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

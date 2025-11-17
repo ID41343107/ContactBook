@@ -26,7 +26,21 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_clear_clicked();
+
+    void on_pushButton_delete_clicked();
+
+    void on_pushButton_edit_clicked();
+
+    void on_lineEdit_search_textChanged(const QString &text);
+
+    void on_tableWidget_itemSelectionChanged();
+
 private:
     Ui::MyWidget *ui;
+    void validateInputs();
+    void clearInputs();
+    void updateButtonStates();
+    QString getDefaultFilePath();
 };
 #endif // MYWIDGET_H
