@@ -60,7 +60,7 @@ void MyWidget::on_pushButton_2_clicked()
     QString saveFile=""; //存檔內容
     for(int i = 0 ;i<ui->tableWidget->rowCount();i++) {
         for (int j=0;j<ui->tableWidget->columnCount();j++) {
-            saveFile+=ui->tableWidget->item(1,3)->text()+",";
+            saveFile+=ui->tableWidget->item(i,j)->text()+",";
         }
         saveFile+="\n";
     }
