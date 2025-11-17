@@ -3,6 +3,10 @@
 
 #include <QFile>
 #include <QDebug>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QApplication>
 
 QString mFilename = "C:/Users/user/Desktop/1117/myfile.txt";
 
@@ -65,5 +69,66 @@ void MyWidget::on_pushButton_2_clicked()
         saveFile+="\n";
     }
     Write (mFilename, saveFile); //呼叫Write
+}
+
+void MyWidget::on_pushButton_3_clicked()
+{
+    // 匯入按鈕 - Import data from file
+    QString filename = QFileDialog::getOpenFileName(this, 
+        QStringLiteral("選擇檔案"), 
+        "", 
+        "Text Files (*.txt);;CSV Files (*.csv);;All Files (*)");
+    
+    if (filename.isEmpty()) {
+        return; // User cancelled
+    }
+    
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, QStringLiteral("錯誤"), QStringLiteral("無法開啟檔案"));
+        return;
+    }
+    
+    // Clear existing data
+    ui->tableWidget->setRowCount(0);
+    
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList fields = line.split(",");
+        
+        if (fields.size() >= 4) {
+            int row = ui->tableWidget->rowCount();
+            ui->tableWidget->insertRow(row);
+            
+            for (int i = 0; i < 4 && i < fields.size(); i++) {
+                QTableWidgetItem *item = new QTableWidgetItem(fields[i].trimmed());
+                ui->tableWidget->setItem(row, i, item);
+            }
+        }
+    }
+    
+    file.close();
+}
+
+void MyWidget::on_pushButton_4_clicked()
+{
+    // 結束按鈕 - Save data and exit
+    // First save the data
+    QString saveFile="";
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++) {
+        for (int j = 0; j < ui->tableWidget->columnCount(); j++) {
+            if (ui->tableWidget->item(i, j)) {
+                saveFile += ui->tableWidget->item(i, j)->text() + ",";
+            } else {
+                saveFile += ",";
+            }
+        }
+        saveFile += "\n";
+    }
+    Write(mFilename, saveFile);
+    
+    // Then close the application
+    QApplication::quit();
 }
 
